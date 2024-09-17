@@ -1,0 +1,31 @@
+version: '3'
+services:
+  galera-node1:
+    image: my-galera-mysql:1.0
+    networks:
+      galera-network:
+        ipv4_address: 172.18.0.2
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+  galera-node2:
+    image: my-galera-mysql:1.0
+    networks:
+      galera-network:
+        ipv4_address: 172.18.0.3
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+  galera-node3:
+    image: my-galera-mysql:1.0
+    networks:
+      galera-network:
+        ipv4_address: 172.18.0.4
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+
+networks:
+  galera-network:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.18.0.0/16
